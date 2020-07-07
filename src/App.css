@@ -6,5 +6,9 @@
     display: flex;
     align-items: center;
     height: 70px;
-    padding-left: 70px;
+}
+
+.footer {
+    background: #323232;
+    height: 200px;
 }

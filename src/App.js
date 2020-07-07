@@ -4,6 +4,7 @@ import GalleryComponent from "./components/GalleryComponent/GalleryComponent";
 import GridComponent from "./components/GridComponent/GridComponent";
 import Form from "./components/Form/Form";
 
+
 function App() {
   return (
     <div className="App">
@@ -16,6 +17,8 @@ function App() {
       <GridComponent/>
 
       <Form />
+
+      <div className="footer" />
     </div>
   );
 }
