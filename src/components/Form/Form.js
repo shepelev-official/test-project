@@ -26,14 +26,17 @@ const Form = () => {
     }
   }
 
+  const sortingGroupMain = []
+  const sortingGroupAdditional = []
+  const sortingGroupOther = []
+
 
   return (
     <form>
       <h1>{props.title}</h1>
       <div className="form-row">
-        {props.fields.map((item, index) => {
 
-
+        {props.fields.map((itemForGroup, index) => {
           const identifierGroup = (group) => {
             if (group === "main") {
               return "col-md-8"
@@ -43,14 +46,24 @@ const Form = () => {
             }
           }
 
+          if (itemForGroup.group === "main") {
+            sortingGroupMain.push(props.fields[index])
+          }
+
+          if (itemForGroup.group === "additional") {
+            sortingGroupAdditional.push(props.fields[index])
+          }
+
+          if (itemForGroup.group !== "additional" & itemForGroup.group !== "main") {
+            sortingGroupOther.push(props.fields[index])
+          }
 
           return (
-            <div className={identifierGroup(item.group)} key={index}>
-              <label htmlFor={`${item.label}`}>
-                <div dangerouslySetInnerHTML={{__html: item.label}}/>
-                <input name={item.name} type={item.type} required={item.required} className="form-control"/>
+            <div className={identifierGroup(itemForGroup.group)} key={index}>
+              <label htmlFor={`${itemForGroup.label}`}>
+                <div dangerouslySetInnerHTML={{__html: itemForGroup.label}}/>
+                <input name={itemForGroup.name} type={itemForGroup.type} required={itemForGroup.required} className="form-control"/>
               </label>
-
             </div>
           )
         })
