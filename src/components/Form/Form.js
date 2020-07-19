@@ -31,43 +31,65 @@ const Form = () => {
   const sortingGroupOther = []
 
 
+  props.fields.forEach((itemForGroup, index) => {
+
+      if (itemForGroup.group === "main") {
+        sortingGroupMain.push(props.fields[index])
+      }
+
+      if (itemForGroup.group === "additional") {
+        sortingGroupAdditional.push(props.fields[index])
+      }
+
+      if (itemForGroup.group !== "additional" && itemForGroup.group !== "main") {
+        sortingGroupOther.push(props.fields[index])
+      }
+    }
+  )
+
+
   return (
     <form>
       <h1>{props.title}</h1>
-      <div className="form-row">
-
-        {props.fields.map((itemForGroup, index) => {
-          const identifierGroup = (group) => {
-            if (group === "main") {
-              return "col-md-8"
-            }
-            if (group === "additional") {
-              return "col-md-4"
-            }
-          }
-
-          if (itemForGroup.group === "main") {
-            sortingGroupMain.push(props.fields[index])
-          }
-
-          if (itemForGroup.group === "additional") {
-            sortingGroupAdditional.push(props.fields[index])
-          }
-
-          if (itemForGroup.group !== "additional" & itemForGroup.group !== "main") {
-            sortingGroupOther.push(props.fields[index])
-          }
-
-          return (
-            <div className={identifierGroup(itemForGroup.group)} key={index}>
-              <label htmlFor={`${itemForGroup.label}`}>
-                <div dangerouslySetInnerHTML={{__html: itemForGroup.label}}/>
-                <input name={itemForGroup.name} type={itemForGroup.type} required={itemForGroup.required} className="form-control"/>
+      <div className="row">
+        <div className="col-md-8">
+          {sortingGroupMain.map((item, index) => {
+            return (
+              <label htmlFor={`${item.label}`} key={index}>
+                <div dangerouslySetInnerHTML={{__html: item.label}}/>
+                <input name={item.name} type={item.type} required={item.required}
+                       className="form-control"/>
               </label>
-            </div>
-          )
-        })
-        }
+            )
+          })
+          }
+        </div>
+
+        <div className="col-md-4">
+          {sortingGroupAdditional.map((item, index) => {
+            return (
+              <label htmlFor={`${item.label}`} key={index}>
+                <div dangerouslySetInnerHTML={{__html: item.label}}/>
+                <input name={item.name} type={item.type} required={item.required}
+                       className="form-control"/>
+              </label>
+            )
+          })
+          }
+        </div>
+
+        <div>
+          {sortingGroupOther.map((item, index) => {
+            return (
+              <label htmlFor={`${item.label}`} key={index}>
+                <input name={item.name} type={item.type} required={item.required}
+                       className="form-control"/>
+                <div dangerouslySetInnerHTML={{__html: item.label}}/>
+              </label>
+            )
+          })
+          }
+        </div>
       </div>
     </form>
   )
