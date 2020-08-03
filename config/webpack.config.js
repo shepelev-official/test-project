@@ -447,9 +447,18 @@ module.exports = function(webpackEnv) {
                 importLoaders: 1,
                 sourceMap: isEnvProduction && shouldUseSourceMap,
                 modules: {
-                  getLocalIdent: getCSSModuleLocalIdent, localIdentName: '[name]__[local]--[hash:base64:5]',
+                  getLocalIdent: getCSSModuleLocalIdent,
+                  localIdentName: '[name]__[local]--[hash:base64:5]',
                 },
               }),
+            },
+            {
+              test: /\.scss$/,
+              use: [
+                require.resolve('style-loader'),
+                require.resolve('css-loader'),
+                require.resolve('sass-loader')
+              ]
             },
             // Opt-in support for SASS (using .scss or .sass extensions).
             // By default we support SASS Modules with the

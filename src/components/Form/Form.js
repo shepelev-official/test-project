@@ -1,4 +1,5 @@
 import React from 'react';
+import classes from './Form.css'
 
 
 const Form = () => {
@@ -49,49 +50,52 @@ const Form = () => {
 
 
   return (
-    <form>
+    <div>
       <h1>{props.title}</h1>
-      <div className="row">
-        <div className="col-md-8">
-          {sortingGroupMain.map((item, index) => {
-            return (
-              <label htmlFor={`${item.label}`} key={index}>
-                <div dangerouslySetInnerHTML={{__html: item.label}}/>
-                <input name={item.name} type={item.type} required={item.required}
-                       className="form-control"/>
-              </label>
-            )
-          })
-          }
-        </div>
+      <form>
+        <div className="row">
+          <div className="col-md-8">
+            {sortingGroupMain.map((item, index) => {
+              return (
+                <label htmlFor={`${item.label}`} key={index}>
+                  <div dangerouslySetInnerHTML={{__html: item.label}}/>
+                  <input name={item.name} type={item.type} required={item.required}
+                         className="form-control"/>
+                </label>
+              )
+            })
+            }
+          </div>
 
-        <div className="col-md-4">
-          {sortingGroupAdditional.map((item, index) => {
-            return (
-              <label htmlFor={`${item.label}`} key={index}>
-                <div dangerouslySetInnerHTML={{__html: item.label}}/>
-                <input name={item.name} type={item.type} required={item.required}
-                       className="form-control"/>
-              </label>
-            )
-          })
-          }
-        </div>
+          <div className="col-md-4">
+            {sortingGroupAdditional.map((item, index) => {
+              return (
+                <label htmlFor={`${item.label}`} key={index}>
+                  <div dangerouslySetInnerHTML={{__html: item.label}}/>
+                  <input name={item.name} type={item.type} required={item.required}
+                         className="form-control"/>
+                </label>
+              )
+            })
+            }
+          </div>
 
-        <div>
-          {sortingGroupOther.map((item, index) => {
-            return (
-              <label htmlFor={`${item.label}`} key={index}>
-                <input name={item.name} type={item.type} required={item.required}
-                       className="form-control"/>
-                <div dangerouslySetInnerHTML={{__html: item.label}}/>
-              </label>
-            )
-          })
-          }
+          <div className={classes.formOther}>
+            {sortingGroupOther.map((item, index) => {
+              return (
+                <label htmlFor={`${item.label}`} key={index} className="row">
+                  <input name={item.name} type={item.type} required={item.required}
+                         className="form-control col-1"/>
+                  <div dangerouslySetInnerHTML={{__html: item.label}} className="col-11"/>
+                </label>
+              )
+            })
+            }
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+        <button className={classes.successButton}>{props.submit_button.text}</button>
+    </div>
   )
 }
 
