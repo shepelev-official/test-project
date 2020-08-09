@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Form.css'
+import classes from './Form.module.css'
 
 
 const Form = () => {
@@ -50,21 +50,21 @@ const Form = () => {
 
 
   return (
-    <div>
+    <div className="container">
       <h1>{props.title}</h1>
       <form>
         <div className="row">
           <div className="col-md-8">
-            {sortingGroupMain.map((item, index) => {
-              return (
-                <label htmlFor={`${item.label}`} key={index}>
-                  <div dangerouslySetInnerHTML={{__html: item.label}}/>
-                  <input name={item.name} type={item.type} required={item.required}
-                         className="form-control"/>
-                </label>
-              )
-            })
-            }
+                {sortingGroupMain.map((item, index) => {
+                  return (
+                    <label htmlFor={`${item.label}`} key={index}>
+                      <div dangerouslySetInnerHTML={{__html: item.label}}/>
+                      <input name={item.name} type={item.type} required={item.required}
+                             className="form-control mr-5"/>
+                    </label>
+                  )
+                })
+                }
           </div>
 
           <div className="col-md-4">
@@ -80,21 +80,23 @@ const Form = () => {
             }
           </div>
 
-          <div className={classes.formOther}>
-            {sortingGroupOther.map((item, index) => {
-              return (
-                <label htmlFor={`${item.label}`} key={index} className="row">
-                  <input name={item.name} type={item.type} required={item.required}
-                         className="form-control col-1"/>
-                  <div dangerouslySetInnerHTML={{__html: item.label}} className="col-11"/>
-                </label>
-              )
-            })
-            }
+          <div className="col-md-12">
+            <div className={classes.checkBox}>
+              {sortingGroupOther.map((item, index) => {
+                return (
+                  <label htmlFor={`${item.label}`} key={index} className={classes.checkBox}>
+                    <input name={item.name} type={item.type} required={item.required}
+                           className="form-control"/>
+                    <div dangerouslySetInnerHTML={{__html: item.label}}/>
+                  </label>
+                )
+              })
+              }
+            </div>
           </div>
         </div>
       </form>
-        <button className={classes.successButton}>{props.submit_button.text}</button>
+      <button className={classes.successButton}>{props.submit_button.text}</button>
     </div>
   )
 }

@@ -1,0 +1,32 @@
+label {
+    color: #323232;
+    font-size: 12px;
+}
+
+.checkBox {
+    display: flex;
+    margin-top: 19px;
+}
+
+.checkBox input {
+    width: 17px;
+    height: 17px;
+    margin-right: 16px;
+    display: flex;
+}
+
+.checkBox div {
+    display: flex;
+    line-height: 1.6;
+}
+
+.successButton {
+    background: linear-gradient(91.83deg, #93E08C -1.93%, #78CEBF 97.03%);
+    border-radius: 3px;
+    border: 0;
+    color: #323232;
+    margin-top: 26px;
+    margin-bottom: 64px;
+    height: 42px;
+    width: 192px;
+}
